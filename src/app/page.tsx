@@ -15,7 +15,7 @@ export default function Home() {
   const [parameterRange, setParameterRange] = useState<ParameterRange>({
     temperature: { min: 0.1, max: 1.0, step: 0.1 },
     top_p: { min: 0.1, max: 1.0, step: 0.1 },
-    max_tokens: { min: 100, max: 1000, step: 100 }
+    max_tokens: { min: 200, max: 1500, step: 100 }
   })
 
   const handleGenerate = async (request: GenerationRequest) => {

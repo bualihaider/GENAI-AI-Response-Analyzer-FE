@@ -1,6 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { ExperimentData } from '@/types'
 import { 
   DocumentTextIcon, 
@@ -325,8 +327,16 @@ export default function ExperimentHistory() {
                           </div>
                         </div>
                         
-                        <div className="text-sm text-gray-800 leading-relaxed">
-                          {isExpanded ? response.content : truncateText(response.content)}
+                        <div className="text-sm text-gray-800 leading-relaxed prose prose-sm max-w-none">
+                          {isExpanded ? (
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                              {response.content}
+                            </ReactMarkdown>
+                          ) : (
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                              {truncateText(response.content)}
+                            </ReactMarkdown>
+                          )}
                         </div>
                         
                         {shouldTruncate && (

@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { ExperimentData } from '@/types'
 import { 
   ChartBarIcon, 
@@ -255,7 +257,11 @@ export default function ResponseDisplay({ experiment }: ResponseDisplayProps) {
               </div>
 
               <div className="bg-gray-50 rounded-lg p-4 mb-4">
-                <p className="text-gray-900 leading-relaxed">{response.content}</p>
+                <div className="text-gray-900 leading-relaxed prose prose-sm max-w-none">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {response.content}
+                  </ReactMarkdown>
+                </div>
               </div>
             </div>
           </div>
